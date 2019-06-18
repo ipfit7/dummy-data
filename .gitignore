@@ -1,0 +1,8 @@
+# Ignore our output
+*.docx
+
+# Ignore compiled python 
+*.pyc
+
+# Ignore project settings 
+/.idea
