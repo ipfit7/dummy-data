@@ -1,38 +1,40 @@
 from docx import Document
+from factories.identity_factory import IdentityFactory
+from models.identity_model import IdentityModel
 import random
 
-def main():
-    create_doc()
 
-def create_doc(nr, naam):
+def create_doc(identity: IdentityModel) -> None:
+    # Placeholder
+    patient_nr = random.randint(10000, 99999)
+
     #create document
     document = Document()
-    document.add_heading('Patient Dossier van ' + naam, 0)
+    document.add_heading('Patient Dossier van ' + identity.full_name, 0)
+
+    # Create table
     patientInfo = document.add_table(rows=5, cols=2)
+
     desc_cells = patientInfo.columns[0].cells
     desc_cells[0].text = "Patient nummer"
     desc_cells[1].text = "Naam"
     desc_cells[2].text = "Geboorte datum"
     desc_cells[3].text = "Woonplaats"
     desc_cells[4].text = "BSN"
+
     info_cells = patientInfo.columns[1].cells
-    # info_cells[0].text = nr 
-    # info_cells[1].text = naam
-    # info_cells[2].text = datum
-    # info_cells[3].text = plaats
-    desc_cells[4].text = random.randint(100000000, 3000000000)
-    document.add_heading("Behandelingen" level=1)
-    behandelingen = document.add_table(rows=4, cols=2)
-    document.save('test.docx')
 
+    info_cells[0].text = str(patient_nr)
+    info_cells[1].text = identity.full_name
+    info_cells[2].text = str(identity.dateOfBirth)
+    info_cells[3].text = identity.placeOfResidence
+    info_cells[4].text = str(identity.bsn)
 
-def data_gen():
-    #random name generator
-    data = {}
-    aantal = 0
-    with open('dummy-data/random-name/first-names.txt', 'r') as voornamenlijst:
-        for naam in voornamenlijst:
-            data.update{unit : {voornaam : naam}}
+    document.save("dossier {0}.docx".format(patient_nr))
+
 
 if __name__ == "__main__":
-    main()
+    factory = IdentityFactory()
+
+    for i in range(1, 20):
+        create_doc(factory.get_random_identity())
