@@ -6,3 +6,7 @@
 
 # Ignore project settings 
 /.idea
+
+# Ignore generated data
+*.mbox
+*.docx
