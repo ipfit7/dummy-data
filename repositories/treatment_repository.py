@@ -3,6 +3,7 @@ from models.treatment_model import TreatmentModel
 from factories.identity_factory import IdentityFactory
 from datetime import datetime
 from random import randint
+from copy import deepcopy
 
 class TreatmentRepository(metaclass=Singleton):
 
@@ -17,14 +18,15 @@ class TreatmentRepository(metaclass=Singleton):
             16 : TreatmentModel(65.00, "Sealen", 16, None),
             17 : TreatmentModel(175.00, "Implantaat", 17, None),
             18 : TreatmentModel(95.00, "Brug", 18, None),
-            19 : TreatmentModel(50.00, "Vulling", 19, None)
+            19 : TreatmentModel(50.00, "Vulling", 19, None),
+            20 : TreatmentModel(60.00, "Xray", 20, None)
         }
     
     def get_treatment(self, treatmentID: int) -> TreatmentModel:
         return self._treatments[treatmentID]
 
     def get_random_treatment(self) -> TreatmentModel:
-        treatment = self._treatments[randint(10,19)]
+        treatment = deepcopy(self._treatments[randint(10, 20)])
         treatment.treatmentDate = IdentityFactory.random_date(datetime(day=1, month=1, year=1991), datetime(day=1, month=1, year=2020))
-        return self._treatments[randint(10,19)]
+        return treatment
         
