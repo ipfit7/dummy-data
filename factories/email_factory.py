@@ -9,7 +9,7 @@ import mailbox
 class EmailFactory(metaclass=Singleton):
 
     def create_email_from_treatment(self, sender: IdentityModel, recipient: IdentityModel, treatment: TreatmentModel):
-        appointment_date = IdentityFactory.random_date(datetime(day=1, month=1, year=1991), datetime(day=1, month=1, year=2020))
+        appointment_date = treatment.treatmentDate
         model = EmailModel()
         model.set_to_from_identymodel(recipient)
         model.set_from_from_identymodel(sender, True)
