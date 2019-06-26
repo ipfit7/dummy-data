@@ -19,6 +19,7 @@ class IdentityFactory(metaclass=Singleton):
         self.first_names = get_lines_from_file(str(random_names_path.joinpath("first-names.txt")))
         self.middle_names = get_lines_from_file(str(random_names_path.joinpath("middle-names.txt")))
         self.last_names = get_lines_from_file(str(random_names_path.joinpath("names.txt")))
+        self.places = get_lines_from_file(str(random_names_path.joinpath("places.txt")))
 
     @staticmethod
     def random_date(start: datetime, end: datetime) -> date:
@@ -37,7 +38,7 @@ class IdentityFactory(metaclass=Singleton):
         model = IdentityModel()
 
         model.address = "placeholderstreet 99"
-        model.placeOfResidence = "placeholdercity"
+        model.placeOfResidence = choice(self.places)
         model.dateOfBirth = self.random_date(self.min_date_of_birth, self.max_date_of_birth)
         model.bsn = randint(100000000, 999999999)
         model.firstName = choice(self.first_names)
