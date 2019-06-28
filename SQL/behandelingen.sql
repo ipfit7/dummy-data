@@ -1,5 +1,5 @@
 CREATE TABLE `behandelingen` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `behandelID` int(11) NOT NULL,
   `behandelDesc` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `behandelCost` double NOT NULL,
