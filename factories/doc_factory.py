@@ -46,7 +46,7 @@ class DocFactory(metaclass=Singleton):
             i += 1
         
         if xray:
+            document.add_heading("Röntgenfoto's", 1)
             document.add_picture(PhotoRepository().get_random_photo())
 
-        # document.save("dossier {0}.docx".format(patient_nr))
         return document
