@@ -15,7 +15,6 @@ class SQLRepository(metaclass=Singleton):
     
     def insert_patients(self, patient: IdentityModel):
         querry = "INSERT INTO patients (firstName, middleName, lastName, bsn, dateOfBirth, address, placeOfResidence) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        # identity = self.id_factory.get_random_identity()
         values = (patient.firstName, patient.middleName, patient.lastName, patient.bsn, patient.dateOfBirth, patient.address,
             patient.placeOfResidence)
         self.c.execute(querry, values)
