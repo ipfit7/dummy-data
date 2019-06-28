@@ -12,22 +12,21 @@ class SQLRepository(metaclass=Singleton):
         self.c = self.db.cursor()
         self.id_factory = IdentityFactory()
         
-    
-    def insert_patients(self, patient: IdentityModel):
+    def insert_patients(self, patient: IdentityModel) -> None:
         querry = "INSERT INTO patients (firstName, middleName, lastName, bsn, dateOfBirth, address, placeOfResidence) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (patient.firstName, patient.middleName, patient.lastName, patient.bsn, patient.dateOfBirth, patient.address,
             patient.placeOfResidence)
         self.c.execute(querry, values)
         self.db.commit()
     
-    def insert_treatments(self, treatments: []):
+    def insert_treatments(self, treatments: []) -> None:
         querry = "INSERT INTO behandelingen (behandelID, behandelDesc, behandelCost) VALUES (%s, %s, %s)"
         for treatment in treatments:
             values = (treatment.treatmentID, treatment.treatmentDesc, treatment.treatmentCost)
             self.c.execute(querry, values)
         self.db.commit()
     
-    def insert_history(self, doctor: IdentityModel, patient: IdentityModel, treatments: []):
+    def insert_history(self, doctor: IdentityModel, patient: IdentityModel, treatments: []) -> None:
         querry = "INSERT INTO behandelgeschiedenis (patientID, dentistID, treatmentDate, behandelID) VALUES (%s, %s, %s, %s)"
         for treatment in treatments:
             values = (patient.bsn, doctor.bsn, treatment.treatmentDate, treatment.treatmentID)
