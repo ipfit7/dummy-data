@@ -3,6 +3,7 @@ from factories.identity_factory import IdentityFactory
 from repositories.treatment_repository import TreatmentRepository
 from models.treatment_model import TreatmentModel
 from models.identity_model import IdentityModel
+from models.dentist_model import DentistModel
 import MySQLdb
 
 class SQLRepository(metaclass=Singleton):
@@ -31,4 +32,10 @@ class SQLRepository(metaclass=Singleton):
         for treatment in treatments:
             values = (patient.bsn, doctor.bsn, treatment.treatmentDate, treatment.treatmentID)
             self.c.execute(querry, values)
+        self.db.commit()
+    
+    def insert_dentists(self, dentist: DentistModel) -> None:
+        querry = "INSERT INTO tandartsen (dentistID, dentistFirstName, dentistMiddleName, dentistLastName, specialty) VALUES (%s, %s, %s, %s, %s)"
+        values = (dentist.dentistID, dentist.firstName, dentist.middleName, dentist.lastName, dentist.specialty)
+        self.c.execute(querry, values)
         self.db.commit()
