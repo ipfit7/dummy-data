@@ -38,6 +38,7 @@ class IdentityFactory(metaclass=Singleton):
 
         model = IdentityModel()
 
+        model.ID = randint(1000, 9999)
         model.address = "{0} {1}".format(choice(self.streets), randint(0, 200))
         model.placeOfResidence = choice(self.places)
         model.dateOfBirth = self.random_date(self.min_date_of_birth, self.max_date_of_birth)
