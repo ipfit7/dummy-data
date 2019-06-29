@@ -18,6 +18,5 @@ class DentistFactory(IdentityFactory):
         dent_model.dateOfBirth = id_fact.dateOfBirth
         dent_model.bsn = id_fact.bsn
 
-
         return dent_model
 
