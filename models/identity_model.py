@@ -1,6 +1,7 @@
 import datetime
 
 class IdentityModel:
+    ID: str
     firstName: str
     middleName: str
     lastName: str
@@ -18,13 +19,15 @@ class IdentityModel:
 
     def __str__(self):
         return \
-            "First name: {0}\n" \
-            "Last Name: {1}\n" \
-            "Middle name: {2}\n" \
-            "bsn: {3}\n" \
-            "date of birth: {4}\n" \
-            "address: {5}\n" \
-            "place of residence {6}".format(
+            "ID: {0}\n" \
+            "First name: {1}\n" \
+            "Last Name: {2}\n" \
+            "Middle name: {3}\n" \
+            "bsn: {4}\n" \
+            "date of birth: {5}\n" \
+            "address: {6}\n" \
+            "place of residence {7}".format(
+                self.ID,
                 self.firstName,
                 self.lastName,
                 self.middleName,
