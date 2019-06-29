@@ -32,4 +32,4 @@ if __name__ == "__main__":
         sql_repo.insert_dentists(doctor)
         sql_repo.insert_history(doctor, patient, treatments)
         for treatment in treatments:
-            email_factory.create_mailbox(email_factory.create_email_from_treatment(doctor, patient, treatment))
+            email_factory.create_mailbox(email_factory.create_email_from_treatment(doctor, patient, treatment), treatment)
