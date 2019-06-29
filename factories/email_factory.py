@@ -17,3 +17,18 @@ class EmailFactory(metaclass=Singleton):
         model.content = "Beste {0},\n\nUw behandeling {1} op {2} staat in de planning.\n\nMet vriendelijke groet,\n\nKiesMondzorg".format(
             recipient.lastName, treatment.treatmentDesc, appointment_date)
         return model
+    
+    def create_mailbox(self, email: EmailModel) -> None:
+        mbox = mailbox.mbox("mailbox.mbox")
+        mbox.lock()
+        try:
+            msg = mailbox.mboxMessage()
+            msg.set_unixfrom('author Sat Feb  7 01:05:34 2009')
+            msg['From'] = email.email_from
+            msg['To'] = email.email_to
+            msg['Subject'] = email.subject
+            msg.set_payload(email.content)
+            mbox.add(msg)
+            mbox.flush()
+        finally:
+            mbox.unlock()
