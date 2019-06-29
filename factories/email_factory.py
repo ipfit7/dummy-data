@@ -3,8 +3,9 @@ from models.identity_model import IdentityModel
 from models.treatment_model import TreatmentModel
 from factories.identity_factory import IdentityFactory
 from util.singleton import Singleton
-from datetime import datetime
+from datetime import datetime, timedelta
 import mailbox
+import time
 
 class EmailFactory(metaclass=Singleton):
 
@@ -18,12 +19,14 @@ class EmailFactory(metaclass=Singleton):
             recipient.lastName, treatment.treatmentDesc, appointment_date)
         return model
     
-    def create_mailbox(self, email: EmailModel) -> None:
+    def create_mailbox(self, email: EmailModel, app_date: TreatmentModel) -> None:
+        sentdate = app_date.treatmentDate - timedelta(days=20)
         mbox = mailbox.mbox("mailbox.mbox")
         mbox.lock()
         try:
             msg = mailbox.mboxMessage()
             msg.set_unixfrom('author Sat Feb  7 01:05:34 2009')
+            msg.set_from("MAILER DAEMON", time.strptime(str(sentdate) + " 12:00", "%Y-%m-%d %H:%M"))
             msg['From'] = email.email_from
             msg['To'] = email.email_to
             msg['Subject'] = email.subject
