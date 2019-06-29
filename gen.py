@@ -12,21 +12,6 @@ import random
 import mailbox
 from pathlib import Path
 
-def create_mailbox(email: EmailModel) -> None:
-    mbox = mailbox.mbox("mailbox.mbox")
-    mbox.lock()
-    try:
-        msg = mailbox.mboxMessage()
-        msg.set_unixfrom('author Sat Feb  7 01:05:34 2009')
-        msg['From'] = email.email_from
-        msg['To'] = email.email_to
-        msg['Subject'] = email.subject
-        msg.set_payload(email.content)
-        mbox.add(msg)
-        mbox.flush()
-    finally:
-        mbox.unlock()
-
 if __name__ == "__main__":
     identity_factory = IdentityFactory()
     treatment_repo = TreatmentRepository()
@@ -47,4 +32,4 @@ if __name__ == "__main__":
         sql_repo.insert_dentists(doctor)
         sql_repo.insert_history(doctor, patient, treatments)
         for treatment in treatments:
-            create_mailbox(email_factory.create_email_from_treatment(doctor, patient, treatment))
+            email_factory.create_mailbox(email_factory.create_email_from_treatment(doctor, patient, treatment))
