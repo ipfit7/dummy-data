@@ -36,7 +36,6 @@ if __name__ == "__main__":
     treatment_repos = TreatmentRepository()
     dentist_factory = DentistFactory()
     patients = [identity_factory.get_random_identity() for x in range(0, 50)]
-    # doctors = [identity_factory.get_random_identity() for y in range(0,130)]
     doctors = [dentist_factory.create_dentist() for y in range(0,30)]
     sql_repo.insert_treatments(treatment_repo.get_treatment(n) for n in range(10,21))
     
