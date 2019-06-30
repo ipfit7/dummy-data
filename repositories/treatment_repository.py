@@ -19,14 +19,16 @@ class TreatmentRepository(metaclass=Singleton):
             17 : TreatmentModel(175.00, "Implantaat", 17, None),
             18 : TreatmentModel(95.00, "Brug", 18, None),
             19 : TreatmentModel(50.00, "Vulling", 19, None),
-            20 : TreatmentModel(60.00, "Xray", 20, None)
+            20 : TreatmentModel(60.00, "Xray", 20, None),
+            21 : TreatmentModel(50.00, "Botox spuiten type I", 21, None),
+            22 : TreatmentModel(65.00, "Botox spuiten type II", 22, None)
         }
     
     def get_treatment(self, treatmentID: int) -> TreatmentModel:
         return self._treatments[treatmentID]
 
     def get_random_treatment(self) -> TreatmentModel:
-        treatment = deepcopy(self._treatments[randint(10, 20)])
+        treatment = deepcopy(self._treatments[randint(10, 22)])
         treatment.treatmentDate = IdentityFactory.random_date(datetime(day=1, month=1, year=1991), datetime(day=1, month=1, year=2020))
         return treatment
         
