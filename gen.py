@@ -23,15 +23,15 @@ if __name__ == "__main__":
     dentist_factory = DentistFactory()
     books_factory = BookFactory()
     patients = [identity_factory.get_random_identity() for x in range(0, 50)]
-    doctors = [dentist_factory.create_dentist() for y in range(0,30)]
-    sql_repo.insert_treatments(treatment_repo.get_treatment(n) for n in range(10,21))
+    doctors = [dentist_factory.create_dentist() for y in range(0,50)]
+    sql_repo.insert_treatments(treatment_repo.get_treatment(n) for n in range(10,23))
     books_factory.make_tables()
     
     for patient in patients:
         doctor = random.choice(doctors)
         sql_repo.insert_patients(patient)
         treatments = [treatment_repo.get_random_treatment() for n in range(0, random.randint(0, 21))]
-        doc_factory.create_doc(patient, treatments).save('dossier {0}.docx'.format(patient.bsn))
+        doc_factory.create_doc(patient, treatments).save('dossier {0}.docx'.format(patient.ID))
         sql_repo.insert_dentists(doctor)
         sql_repo.insert_history(doctor, patient, treatments)
         books_factory.make_books(treatments)
