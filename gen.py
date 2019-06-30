@@ -1,6 +1,7 @@
 from factories.doc_factory import DocFactory
 from factories.identity_factory import IdentityFactory
 from factories.dentist_factory import DentistFactory
+from factories.books_factory import BookFactory
 from models.identity_model import IdentityModel
 from factories.email_factory import EmailFactory
 from models.email_model import EmailModel
@@ -20,9 +21,11 @@ if __name__ == "__main__":
     email_factory = EmailFactory()
     treatment_repos = TreatmentRepository()
     dentist_factory = DentistFactory()
+    books_factory = BookFactory()
     patients = [identity_factory.get_random_identity() for x in range(0, 50)]
     doctors = [dentist_factory.create_dentist() for y in range(0,30)]
     sql_repo.insert_treatments(treatment_repo.get_treatment(n) for n in range(10,21))
+    books_factory.make_tables()
     
     for patient in patients:
         doctor = random.choice(doctors)
@@ -31,5 +34,6 @@ if __name__ == "__main__":
         doc_factory.create_doc(patient, treatments).save('dossier {0}.docx'.format(patient.bsn))
         sql_repo.insert_dentists(doctor)
         sql_repo.insert_history(doctor, patient, treatments)
+        books_factory.make_books(treatments)
         for treatment in treatments:
             email_factory.create_mailbox(email_factory.create_email_from_treatment(doctor, patient, treatment), treatment)
