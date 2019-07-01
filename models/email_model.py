@@ -3,7 +3,7 @@ from random import choice
 
 
 class EmailModel:
-    _email_domains = ["gmail.com", "yandex.ru", "habbo_hotel.nl", "live.nl"]
+    _email_domains = ["aol.com"]
     email_to: str
     email_from: str
     email_cc: str
