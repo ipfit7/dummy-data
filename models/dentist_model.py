@@ -11,11 +11,16 @@ class DentistModel(IdentityModel):
         "Ouderentandarts (geriatrie-tandarts)", "Restauratief tandarts",
         "Biologische tandarts", "Botox specialist type I", "Botox specialist type II"
         ]
+    _salraries = [
+        2000.00, 2500.00, 3000.00, 3500.00, 4000.00, 2750.00, 2250.00
+    ]
     specialty: str
+    salary: float
     dentistID: int
 
     def __init__(self):
         self.specialty = choice(self._specialties)
+        self.salary = choice(self._salraries)
         self.dentistID = randint(1000, 9999)
 
         super().__init__()

@@ -5,5 +5,6 @@ CREATE TABLE `tandartsen` (
   `dentistMiddleName` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dentistLastName` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `specialty` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salary` double NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

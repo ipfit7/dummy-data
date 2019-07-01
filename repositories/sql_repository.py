@@ -35,7 +35,7 @@ class SQLRepository(metaclass=Singleton):
         self.db.commit()
     
     def insert_dentists(self, dentist: DentistModel) -> None:
-        querry = "INSERT INTO tandartsen (dentistID, dentistFirstName, dentistMiddleName, dentistLastName, specialty) VALUES (%s, %s, %s, %s, %s)"
-        values = (dentist.dentistID, dentist.firstName, dentist.middleName, dentist.lastName, dentist.specialty)
+        querry = "INSERT INTO tandartsen (dentistID, dentistFirstName, dentistMiddleName, dentistLastName, specialty, salary) VALUES (%s, %s, %s, %s, %s, %s)"
+        values = (dentist.dentistID, dentist.firstName, dentist.middleName, dentist.lastName, dentist.specialty, dentist.salary)
         self.c.execute(querry, values)
         self.db.commit()
