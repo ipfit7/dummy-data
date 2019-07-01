@@ -21,7 +21,7 @@ class EmailFactory(metaclass=Singleton):
     
     def create_mailbox(self, email: EmailModel, app_date: TreatmentModel) -> None:
         sentdate = app_date.treatmentDate - timedelta(days=20)
-        mbox = mailbox.mbox("mailbox.mbox")
+        mbox = mailbox.mbox("./data/mail/mailbox.mbox")
         mbox.lock()
         try:
             msg = mailbox.mboxMessage()
