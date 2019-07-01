@@ -22,6 +22,9 @@ if __name__ == "__main__":
     treatment_repos = TreatmentRepository()
     dentist_factory = DentistFactory()
     books_factory = BookFactory()
+    Path.mkdir("./data", exist_ok=True)
+    Path.mkdir("./data/mail", exist_ok=True)
+    Path.mkdir("./data/patient_dossiers", exist_ok=True)
     patients = [identity_factory.get_random_identity() for x in range(0, 50)]
     doctors = [dentist_factory.create_dentist() for y in range(0,30)]
     sql_repo.insert_treatments(treatment_repo.get_treatment(n) for n in range(10,23))
