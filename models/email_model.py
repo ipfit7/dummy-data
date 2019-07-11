@@ -4,11 +4,11 @@ from random import choice
 
 class EmailModel:
     _email_domains = ["aol.com"]
-    email_to: str
-    email_from: str
-    email_cc: str
-    subject: str
-    content: str
+    email_to = ""
+    email_from = ""
+    email_cc = ""
+    subject = ""
+    content = ""
 
     def set_to_from_identymodel(self, model: IdentityModel):
         self.email_to = "{0}@{1}".format("".join([x for x in model.full_name if x != " "]), choice(self._email_domains))

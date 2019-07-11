@@ -2,10 +2,10 @@ from models.identity_model import IdentityModel
 from datetime import datetime
 
 class TreatmentModel:
-    treatmentDesc: str
-    treatmentID: int
-    treatmentCost: float
-    treatmentDate: datetime
+    treatmentDesc = ""
+    treatmentID = 0
+    treatmentCost = 0.0
+    treatmentDate = datetime.now()
 
     def __init__(self, cost: float, desc: str, ID: int, date: datetime):
         self.treatmentCost = cost

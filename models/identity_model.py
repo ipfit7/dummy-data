@@ -1,14 +1,14 @@
 import datetime
 
 class IdentityModel:
-    ID: str
-    firstName: str
-    middleName: str
-    lastName: str
-    bsn: str
-    dateOfBirth: datetime.date
-    address: str
-    placeOfResidence: str
+    ID = ""
+    firstName = ""
+    middleName = ""
+    lastName = ""
+    bsn = ""
+    dateOfBirth = None
+    address = ""
+    placeOfResidence = ""
 
     @property
     def full_name(self) -> str:

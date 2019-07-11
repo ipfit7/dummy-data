@@ -14,9 +14,9 @@ class DentistModel(IdentityModel):
     _salraries = [
         2000.00, 2500.00, 3000.00, 3500.00, 4000.00, 2750.00, 2250.00
     ]
-    specialty: str
-    salary: float
-    dentistID: int
+    specialty = ""
+    salary = 0.0
+    dentistID = 0
 
     def __init__(self):
         self.specialty = choice(self._specialties)
